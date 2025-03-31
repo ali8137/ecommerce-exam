@@ -16,6 +16,12 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(
+        // no two products with the same product_listing_order and category_id:
+        uniqueConstraints = @UniqueConstraint(
+                columnNames = {"product_listing_order", "category_id"}
+        )
+)
 public class Product {
 
     @Id
@@ -35,7 +41,7 @@ public class Product {
     )
     private Category category;
     @Column(
-        unique = true,
+//        unique = true,
         nullable = false
     )
     private Integer productListingOrder;

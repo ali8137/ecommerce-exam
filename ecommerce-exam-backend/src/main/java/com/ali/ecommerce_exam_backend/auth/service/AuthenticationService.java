@@ -11,6 +11,7 @@ import com.ali.ecommerce_exam_backend.model.User;
 import com.ali.ecommerce_exam_backend.repository.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -55,6 +57,9 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse login(AuthenticationRequest request) {
+
+//        log.info("Email: {}, Password: {}", request.getEmail(), request.getPassword());
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
