@@ -7,8 +7,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 // login/sign in
 // logout
 
-const url = 'http://localhost:8080/api'
-// TODO: it is better to add the above url in the development .env.development file
+const backendApiUrl: string = process.env.NEXT_PUBLIC_BACKEND_API_URL || ''
 
 // Load token from localStorage if it exists
 // const token: string = typeof window !== "undefined" ? localStorage.getItem('token') || '' : ''
@@ -36,8 +35,8 @@ export const login = createAsyncThunk(
       const { email = '', password = '' } = params
 
       const response = await axios.post(
-        `${url}/auth/authenticate`,
-        { email: email, password: password },
+        `${backendApiUrl}/auth/authenticate`,
+        { email: email, password: password } as { email: string; password: string },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -78,7 +77,7 @@ export const register = createAsyncThunk(
       } = params
 
       const response = await axios.post(
-        `${url}/auth/register`,
+        `${backendApiUrl}/auth/register`,
         {
           firstName: firstName,
           lastName: lastName,
@@ -125,7 +124,7 @@ export const isUserAuthenticated = createAsyncThunk(
     try {
       // TODO: for better readability, the below is better to be written as `${}` rather than ""
       const response = await axios(
-        `${url}/auth/isTokenExpired/${token}`,
+        `${backendApiUrl}/auth/isTokenExpired/${token}`,
         {
           headers: {
             'Content-Type': 'application/json',
