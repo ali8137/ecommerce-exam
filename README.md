@@ -12,6 +12,7 @@ This is a full-stack e-commerce application built using Spring Boot for the back
 - after reordering categories in the admin/categories page, there is a button at bottom, it must be clicked for the new order to be persited in the database
 - I just made a basic cart with certain API calls to the backend
 - important routes are: /admin/categories, /categories, /categories/[categoryName], /cart
+- I assumed the CRUD operatiosn for products and categories refer to the backend implementation of products and categories, and not the frontend
 
 ---
 
