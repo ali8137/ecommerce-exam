@@ -25,7 +25,7 @@ public class JwtService {
         SECRET_KEY = System.getenv("JWT_SECRET_KEY");
     }
 
-    // generate jwt access token:
+    // implement the generateAccessToken, extractUsername and isAccessTokenValid methods:
     public String generateAccessToken(UserDetails userDetails) {
 //        return generateAccessToken(new HashMap<>(), userDetails);
 
@@ -35,12 +35,10 @@ public class JwtService {
         return generateAccessToken(extraClaims, userDetails);
     }
 
-    // extract username from jwt access token:
     public String extractUsername(String jwtAccessToken) {
         return extractClaim(jwtAccessToken, Claims::getSubject);
     }
 
-    // extract a generic claim from jwt access token:
     public <R> R extractClaim(
             String jwtAccessToken,
             Function<Claims, R> claimsResolver
@@ -49,7 +47,6 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    // check if the access token is valid (credentials + expiration):
     public boolean isAccessTokenValid(String jwtAccessToken, UserDetails userDetails) {
         String username = extractUsername(jwtAccessToken);
         return username.equals(userDetails.getUsername()) && !isAccessTokenExpired(jwtAccessToken);

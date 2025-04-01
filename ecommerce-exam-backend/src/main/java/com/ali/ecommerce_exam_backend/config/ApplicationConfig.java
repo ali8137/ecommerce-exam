@@ -31,6 +31,7 @@ public class ApplicationConfig {
         return authProvider;
     }
 
+    // create the UserDetailsService bean:
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username)

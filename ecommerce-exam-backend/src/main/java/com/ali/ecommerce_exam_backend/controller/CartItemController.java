@@ -17,10 +17,12 @@ public class CartItemController {
     private final CartItemService cartItemService;
 
 
+    // increase the quantity of the cart item by 1, this method uses cartItemId to specify the cart item
     @PutMapping("/increment-cart-item/{id}")
     public ResponseEntity<String> incrementItem(
             @PathVariable("id") Long cartItemId
     ) /*throws CartItemException*/ {
+
         //    delegating the functionality to the corresponding Service method...
         cartItemService.incrementCartItem(cartItemId);
 

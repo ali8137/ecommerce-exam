@@ -21,6 +21,7 @@ public class CartController {
 
     private final CartService cartService;
 
+    // get all the user's carts, only one of them will be the active one
     @GetMapping("/get-carts")
     public ResponseEntity<List<Cart>> getUserCarts(
             @AuthenticationPrincipal UserDetails userDetails

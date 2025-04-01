@@ -1,11 +1,9 @@
-import Link from 'next/link'
 import React from 'react'
 
 interface categoryProps {
   id: string
   title: string
   description: string
-  // price?: number
   isAdmin?: boolean
 }
 
@@ -13,25 +11,12 @@ interface categoryProps {
 //   console.log('category clicked')
 // }
 
-const Category = (prop: categoryProps) => {
-  const { title, description/*, price, isAdmin = false */}: categoryProps = prop
-
-  // const Wrapper: React.ElementType = price !== undefined ? 'div' : 'Link' // use <div> in case of product card, <a> in case of category card
-
-
-  // console.log('isAdmin', isAdmin)
-
+// TODO: it would have been better to merge this AdminCategory component with the Category component as both of them serve the same purpose
+const AdminCategory = (prop: categoryProps) => {
+  const { title, description/*, price, isAdmin = false*/ }: categoryProps = prop
 
   return (
-    <Link
-      href={`/categories/${title.toLowerCase()}`}
-      passHref
-      role="button"
-      tabIndex={0}
-      // onClick={handleClick}
-      // onKeyDown={(e) => {
-      //   if (e.key === 'Enter' || e.key === ' ') handleClick()
-      // }}
+    <div
       className="relative bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-gray-700 overflow-hidden group"
     >
       {/* TODO: replace the below code with <Card> component and use context api to pass the props down */}
@@ -41,14 +26,9 @@ const Category = (prop: categoryProps) => {
             {title}
           </h3>
           <p className="text-gray-600 dark:text-gray-300">{description}</p>
-          {/* {price !== undefined && (
-            <p className="text-gray-600 dark:text-gray-300 text-right">
-              {price}$
-            </p>
-          )} */}
         </div>
-    </Link>
+    </div>
   )
 }
 
-export default Category
+export default AdminCategory 

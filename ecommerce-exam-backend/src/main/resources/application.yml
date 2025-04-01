@@ -8,6 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
+      # TODO: not suitable for production
       ddl-auto: update
     show-sql: true
     properties:

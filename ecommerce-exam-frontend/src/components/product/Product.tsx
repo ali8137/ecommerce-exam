@@ -29,6 +29,7 @@ const Product = (prop: productProps) => {
   const addProductToCart = () => {
     console.log('product added to cart')
 
+    // TODO: using cookie to store the token would have been better, whether for security issues or performance (SSR, ...)
     const token: string = localStorage.getItem('token') as string
     // use redux toolkit to call the function to add the product to the cart
     dispatch(

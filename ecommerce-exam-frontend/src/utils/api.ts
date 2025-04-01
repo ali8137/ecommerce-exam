@@ -5,11 +5,13 @@ import axios from 'axios'
 // const backendApiUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL
 
 interface categoryType {
-  id: number
+  id: string
   title: string
   description: string
+  categoryListingOrder: number
 }
 
+// send request to nextjs API, which in turn call the backend server 
 export async function getCategories(
   params: { authToken?: string } = {}
 ): Promise<Array<categoryType>> {

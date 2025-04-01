@@ -37,6 +37,8 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProductsByOrder(
             @RequestParam String categoryName
     ) throws ProductException {
+
+        //     delegating the functionality to the corresponding Service method...
         var products = productService.getAllProductsByOrder(categoryName);
 
         return new ResponseEntity<>(products, HttpStatus.OK);

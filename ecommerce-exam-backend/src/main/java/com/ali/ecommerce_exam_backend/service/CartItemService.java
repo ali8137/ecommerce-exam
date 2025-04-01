@@ -17,6 +17,7 @@ public class CartItemService {
         modularity, scalability and testing. add the service classes rather than the repositories below*/
     private final CartRepository cartRepository;
 
+    // increment the quantity of the cart item:
     public void incrementCartItem(Long cartItemId) {
         // fetch the cart item from the database:
         CartItem cartItem = cartItemRepository.findById(cartItemId)

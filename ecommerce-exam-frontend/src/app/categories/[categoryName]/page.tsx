@@ -18,7 +18,7 @@ interface productType {
 const ProductContainer = () => {
   // TODO: a mistake here, the products should better be imported from the store of redux toolkit
   const [products, setProducts] = useState<productType[]>([])
-//   const [products, setProducts] = useState<Array(productType)>([])
+  // const [products, setProducts] = useState<Array(productType)>([])
   // const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null)
 
@@ -37,6 +37,8 @@ const ProductContainer = () => {
       return
     }
 
+    // TODO: it would have been better to fetch the products through the store of redux toolkit
+    // fetch products:
     const fetchProducts = async (): Promise<void> => {
       // setIsLoading(true);
       try {

@@ -16,6 +16,7 @@ const AuthProvider = () => {
   const router = useRouter()
 
   useEffect(() => {
+    // TODO: using cookie to store the token would have been better, whether for security issues or performance (SSR, ...)
     // const token: string = localStorage.getItem('token') as string;
     const token: string = localStorage.getItem('token') || ''
 
@@ -25,14 +26,12 @@ const AuthProvider = () => {
     // }
 
     const checkAuth = async () => {
-
-
       // console.log('token', token as string || 'no token')
 
       //   setIsLoading(true)
       try {
         const isAuthenticated: boolean = await dispatch(
-          isUserAuthenticated({token})
+          isUserAuthenticated({ token })
         ).unwrap()
 
         // console.log('isAuthenticated', isAuthenticated)

@@ -33,8 +33,8 @@ public class Category {
     )
     private List<Product> products;
     @Column(
-            unique = true,
-            nullable = false
+            unique = true
+//            nullable = false
     )
     private Integer categoryListingOrder;
 

@@ -25,6 +25,7 @@ public class ProductService {
 //        return categories;
 //    }
 
+    // get all products by ascending order of productListingOrder
     public List<Product> getAllProductsByOrder(String categoryName) {
         var categories = productRepository.findByCategoryTitleOrderByProductListingOrderAsc(categoryName);
 
