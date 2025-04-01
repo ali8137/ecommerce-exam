@@ -8,10 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,4 +40,40 @@ public class ProductController {
 
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) /*throws ProductException*/ {
+        var product = productService.getProductById(id);
+
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+
+    @PostMapping("/add-products")
+    public ResponseEntity<String> addProducts(@RequestBody List<Product> products) {
+        productService.addProducts(products);
+
+        return new ResponseEntity<>("Products added successfully" , HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateProduct(
+            @PathVariable("id") Long productId,
+            @RequestBody Product updatedProduct
+    ) throws ProductException {
+        productService.updateProduct(productId, updatedProduct);
+
+        return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(
+            @PathVariable("id") Long productId
+    ) throws ProductException {
+        productService.deleteProduct(productId);
+
+        return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
+    }
+
 }
