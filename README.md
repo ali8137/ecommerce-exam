@@ -137,13 +137,13 @@ This is a simplified ecommerce project with features like fetching categories, p
     - categories/[categoryName]
 - components:
   -  are inside 'components' directory
-  -  some component: <Category />, <Product />, <AdminCategory />, <Authentication />, <AuthProvider />, <Cart />, <CartProduct />, <CartOrderSummary />.
+  -  some component: Category, Product, AdminCategory, Authentication, AuthProvider , Cart , CartProduct, CartOrderSummary
 - redux slices are inside 'redux' directory
   -  some redux slices: auth, cart, category, ...
 - dnd-kit components are inside 'components/admin/dnd'
-  - <Draggable />
-  - <Droppable />
-  - <DnDContext />
+  - Draggable
+  - Droppable
+  - DnDContext
   - onDragOver event handler, active and over props
 - data fetching:
   - axios
