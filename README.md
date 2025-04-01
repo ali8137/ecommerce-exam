@@ -140,10 +140,11 @@ This is a simplified ecommerce project with features like fetching categories, p
   - user routes:
     - categories
     - categories/[categoryName]
-    - categories/[categoryName]/product
+    - ~~categories/[categoryName]/product~~
+    - /cart
   - admin routes:
     - categories
-    - categories/[categoryName]
+    - ~~categories/[categoryName]~~
 - components:
   -  are inside 'components' directory
   -  some component: Category, Product, AdminCategory, Authentication, AuthProvider , Cart , CartProduct, CartOrderSummary
