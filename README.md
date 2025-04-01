@@ -11,7 +11,7 @@ This is a full-stack e-commerce application built using Spring Boot for the back
 - I have made dnd effect for categories only and not products
 - after reordering categories in the admin/categories page, there is a button at bottom, it must be clicked for the new order to be persited in the database
 - I just made a basic cart with certain API calls to the backend
-- 
+- important routes are: /admin/categories, /categories, /categories/[categoryName], /cart
 
 ---
 
