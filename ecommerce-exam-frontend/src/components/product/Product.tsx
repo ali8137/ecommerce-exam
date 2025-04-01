@@ -1,8 +1,14 @@
+'use client'
+
+import { useAppDispatch } from '@/redux/store'
 import { Button } from '@mui/material'
 import React from 'react'
+import { addToCart } from '@/redux/features/cartSlice/cartSlice'
+import { useRouter } from 'next/navigation'
 
 interface productProps {
-  id: number
+  // id: number
+  id: string
   title: string
   description: string
   price: number
@@ -14,21 +20,34 @@ interface productProps {
 // }
 
 const Product = (prop: productProps) => {
-  const { title, description, price/*, categoryId*/ }: productProps = prop
+  const { id, title, description, price /*, categoryId*/ }: productProps = prop
 
-  
-  const addToCart = () => {
+  const dispatch = useAppDispatch()
+
+  const router = useRouter()
+
+  const addProductToCart = () => {
     console.log('product added to cart')
 
+    const token: string = localStorage.getItem('token') as string
     // use redux toolkit to call the function to add the product to the cart
+    dispatch(
+      addToCart({
+        // productId: prop.id,
+        productId: id,
+        authToken: token
+      })
+    )
+
+    router.push('/cart')
+
   }
 
-  
   // const Wrapper: React.ElementType = price !== undefined ? 'div' : 'Link' // use <div> in case of product card, <a> in case of category card
 
   return (
     <div
-      role="button"
+      // role="button"
       tabIndex={0}
       // onClick={handleClick}
       // onKeyDown={(e) => {
@@ -36,13 +55,12 @@ const Product = (prop: productProps) => {
       // }}
       className="relative bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-gray-700 overflow-hidden group"
     >
-      
       <div className="absolute top-6 right-7">
         <Button
           variant="contained"
           color="primary"
           size="small"
-          onClick={addToCart}
+          onClick={addProductToCart}
         >
           Add to Cart
         </Button>

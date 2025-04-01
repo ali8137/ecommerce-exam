@@ -113,7 +113,7 @@ export const isUserAuthenticated = createAsyncThunk(
   // async (_ /*params = {}*/, thunkAPI) => {
   async (params: isUserAuthenticatedParams = {}, thunkAPI) => {
 
-    const { token = '' } = params
+    const { token } = params
 
     // check if there is token:
     if (!token) {
@@ -163,6 +163,8 @@ const authSlice = createSlice({
       .addCase(login.pending, (/*state*/) => {})
       .addCase(login.fulfilled, (state, action) => {
         state.token = action.payload.accessToken
+        console.log("action.payload.accessToken", action.payload.accessToken)
+        state.isAuthenticated = true
         localStorage.setItem('token', action.payload.accessToken) // store token
       })
       .addCase(login.rejected, (/*state, action*/) => {})
@@ -170,6 +172,7 @@ const authSlice = createSlice({
       .addCase(register.pending, (/*state*/) => {})
       .addCase(register.fulfilled, (state, action) => {
         state.token = action.payload.accessToken
+        state.isAuthenticated = true
         localStorage.setItem('token', action.payload.accessToken) // store token
       })
       .addCase(register.rejected, (/*state, action*/) => {})

@@ -1,3 +1,4 @@
+// TODO: it would better to remove this, and import the token from the store of the redux toolkit
 'use client'
 
 import Category from '@/components/category/Category'
@@ -21,6 +22,9 @@ const CategoryContainer = () => {
   const router = useRouter()
 
   useEffect(() => {
+    // TODO:[wrong: redux toolkit management happens at the client side also] it would better to remove this, and
+    //  import the token from the store of the redux toolkit. and
+    //  remove all the code inside this useEffect() into a function defined above and outside this component
     const token = localStorage.getItem('token')
 
     if (!token) {

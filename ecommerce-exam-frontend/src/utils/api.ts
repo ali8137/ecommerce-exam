@@ -38,9 +38,11 @@ export async function getCategories(
 }
 
 interface productType {
-  id: number
+  // id: number
+  id: string
   title: string
   description: string
+  price: number
 }
 
 export async function getProducts(

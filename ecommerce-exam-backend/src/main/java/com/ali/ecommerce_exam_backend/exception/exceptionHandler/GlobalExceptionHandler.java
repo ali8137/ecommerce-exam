@@ -1,6 +1,6 @@
 package com.ali.ecommerce_exam_backend.exception.exceptionHandler;
 
-import com.ali.ecommerce_exam_backend.exception.UserException;
+import com.ali.ecommerce_exam_backend.exception.*;
 import com.ali.ecommerce_exam_backend.exception.errorResponse.ErrorResponse;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.validation.ConstraintViolation;
@@ -19,27 +19,27 @@ import java.util.Set;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-//    @ExceptionHandler(ProductException.class)
-//    public ResponseEntity<ProductErrorResponse> handleProductException(ProductException exception) {
-//        ProductErrorResponse response = new ProductErrorResponse(
-//                exception.getMessage(),
-//                LocalDateTime.now(),
-//                HttpStatus.NOT_FOUND
-//        );
-//
-//        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-//    }
+    @ExceptionHandler(ProductException.class)
+    public ResponseEntity<ErrorResponse> handleProductException(ProductException exception) {
+        ErrorResponse response = new ErrorResponse(
+                exception.getMessage(),
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND
+        );
 
-//    @ExceptionHandler(CategoryException.class)
-//    public ResponseEntity<ProductErrorResponse> handleCategoryException(CategoryException exception) {
-//        ProductErrorResponse response = new ProductErrorResponse(
-//                exception.getMessage(),
-//                LocalDateTime.now(),
-//                HttpStatus.NOT_FOUND
-//        );
-//
-//        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-//    }
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CategoryException.class)
+    public ResponseEntity<ErrorResponse> handleCategoryException(CategoryException exception) {
+        ErrorResponse response = new ErrorResponse(
+                exception.getMessage(),
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Map<String, String>> handleConstraintViolationException(
@@ -71,28 +71,28 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.FOUND);
     }
 
-//    @ExceptionHandler(CartException.class)
-//    public ResponseEntity<ErrorResponse> handleCartException(CartException exception) {
-//        ErrorResponse response = new ErrorResponse(
-//                exception.getMessage(),
-//                LocalDateTime.now(),
-//                HttpStatus.FOUND
-//        );
-//
-//        return new ResponseEntity<>(response, HttpStatus.FOUND);
-//    }
-//
-//
-//    @ExceptionHandler(CartItemException.class)
-//    public ResponseEntity<ErrorResponse> handleCartItemException(CartItemException exception) {
-//        ErrorResponse response = new ErrorResponse(
-//                exception.getMessage(),
-//                LocalDateTime.now(),
-//                HttpStatus.NOT_FOUND
-//        );
-//
-//        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-//    }
+    @ExceptionHandler(CartException.class)
+    public ResponseEntity<ErrorResponse> handleCartException(CartException exception) {
+        ErrorResponse response = new ErrorResponse(
+                exception.getMessage(),
+                LocalDateTime.now(),
+                HttpStatus.FOUND
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.FOUND);
+    }
+
+
+    @ExceptionHandler(CartItemException.class)
+    public ResponseEntity<ErrorResponse> handleCartItemException(CartItemException exception) {
+        ErrorResponse response = new ErrorResponse(
+                exception.getMessage(),
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<ErrorResponse> handleExpiredJwtException(ExpiredJwtException exception) {
