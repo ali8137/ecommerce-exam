@@ -2,7 +2,9 @@ package com.ali.ecommerce_exam_backend.service;
 
 import com.ali.ecommerce_exam_backend.exception.CategoryException;
 import com.ali.ecommerce_exam_backend.model.Category;
+import com.ali.ecommerce_exam_backend.model.Product;
 import com.ali.ecommerce_exam_backend.repository.CategoryRepository;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,5 +64,31 @@ public class CategoryService {
                 .toList();
 
         return categoryRepository.saveAll(updatedCurrentCategories);
+    }
+
+
+    public void createNewCategory(Category category) {
+        categoryRepository.save(category);
+    }
+
+    public void updateCategory(Long categoryId, Category updatedCategory) {
+
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+
+        if (categoryOptional.isEmpty()) {
+            throw new CategoryException("Category not found.");
+        }
+
+        Category category = categoryOptional.get();
+        category.setTitle(updatedCategory.getTitle());
+        category.setDescription(updatedCategory.getDescription());
+        category.setCategoryListingOrder(updatedCategory.getCategoryListingOrder());
+
+
+        categoryRepository.save(category);
+    }
+
+    public void deleteProduct(Long categoryId) {
+        categoryRepository.deleteById(categoryId);
     }
 }
