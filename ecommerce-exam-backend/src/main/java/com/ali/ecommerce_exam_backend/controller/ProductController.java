@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +51,8 @@ public class ProductController {
     }
 
 
+    //    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add-products")
     public ResponseEntity<String> addProducts(@RequestBody List<Product> products) {
         productService.addProducts(products);
@@ -57,6 +60,8 @@ public class ProductController {
         return new ResponseEntity<>("Products added successfully" , HttpStatus.CREATED);
     }
 
+    //    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<String> updateProduct(
             @PathVariable("id") Long productId,
@@ -67,6 +72,8 @@ public class ProductController {
         return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
     }
 
+    //    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(
             @PathVariable("id") Long productId
